@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Trip Planner</string>
+    <string-array name="locations">
+        <item>Sigiriya:80.75:7.95:Palace and Fortress in the Sky</item>
+        <item>Pinnawala Elephant Orphanage:7.30:80.40:Orphanage for Wild Elephants</item>
+        <item>Hikkaduwa Beach:80.11:6.15:Reputed Surfing Spot</item>
+        <item>DaladaMaligawa Kandy:80.64:7.29:Temple of the Tooth</item>
+        <item>Hakgala Botanical Garden:80.76:6.92:Famous Botanical Garden</item>
+        <item>Adams Peak:80.49:6.81:Sri Pada Mountain</item>
+        <item>KoneswaramTemple:81.25:8.58:Classical-medieval Hindu Temple</item>
+        <item>Polonnaruwa Vatadage:81.00:7.95:The Stupa House</item>
+        <item>Keerimali Naguleswaram Temple:80.00:9.82:Thirutambaleswaram Kovil</item>
+        <item>Royal Botanical Gardens:80.59:7.26:Renowned for Orchidsrchids</item>
+    </string-array>
+</resources>
