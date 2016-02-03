@@ -4,10 +4,13 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     TextView txtEnd;
     @Bind(R.id.lstItems)
     ListView lstItems;
+    @Bind(R.id.etUserID)
+    EditText etUserID;
 
     private List<Location> locations;
 
@@ -95,11 +100,17 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnSuggest)
     public void onSuggestClicked() {
+        List<Location> selectedLocations = new ArrayList<>();
         for (Location location : locations) {
             if (location.isSelected()) {
-                Toast.makeText(this, location.getName(), Toast.LENGTH_SHORT).show();
+                selectedLocations.add(location);
             }
         }
+        String location = TextUtils.join(",", selectedLocations);
+
+
+
+        Log.i("MainActivity", location);
     }
 
     public class CustomAdapter extends ArrayAdapter<Location> {

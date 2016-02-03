@@ -61,6 +61,6 @@ public class Location {
 
     @Override
     public String toString() {
-        return name;
+        return name.replace(" ", "") + ":" + longitude + ":" + latitude + ":1.0";
     }
 }
