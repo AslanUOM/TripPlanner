@@ -15,6 +15,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.springframework.http.HttpMethod;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,7 +27,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnResponseListener {
     @Bind(R.id.txtStart)
     TextView txtStart;
     @Bind(R.id.txtEnd)
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     private Calendar startDate = Calendar.getInstance();
     private Calendar endDate = Calendar.getInstance();
     private DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    private ServiceConnector<String> connector = new ServiceConnector<>(this);
+    private static final String URL = "http://10.0.2.2:9763/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,9 +112,16 @@ public class MainActivity extends AppCompatActivity {
         }
         String location = TextUtils.join(",", selectedLocations);
 
+        Request<String> request = new Request<>();
+        //request.setEntity(location);
+        request.setHttpMethod(HttpMethod.GET);
+        request.setUrl(URL);
+        connector.execute(request);
+    }
 
-
-        Log.i("MainActivity", location);
+    @Override
+    public void onResponseReceived(String result) {
+        Log.i("Gobinath", result);
     }
 
     public class CustomAdapter extends ArrayAdapter<Location> {
