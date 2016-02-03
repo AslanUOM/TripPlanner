@@ -53,7 +53,7 @@ public class ServiceConnector<T> {
                 RestTemplate restTemplate = new RestTemplate(true);
                 ResponseEntity<String> response = restTemplate.exchange(request.getUrl(), request.getHttpMethod(), entity, String.class, (Object[]) request.getUrlVariables());
                 String body = response.getBody();
-                Log.i("RESPONSE", body);
+                //Log.i("RESPONSE", body);
                 return body;
             } catch (Exception e) {
                 Log.e(this.getClass().getName(), e.getMessage(), e);

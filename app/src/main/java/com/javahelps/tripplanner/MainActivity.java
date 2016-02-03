@@ -42,8 +42,7 @@ public class MainActivity extends AppCompatActivity implements OnResponseListene
     private Calendar startDate = Calendar.getInstance();
     private Calendar endDate = Calendar.getInstance();
     private DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-    private ServiceConnector<String> connector = new ServiceConnector<>(this);
-    private static final String URL = "http://10.0.2.2:9763/";
+    private static final String URL = "http://10.0.2.2:9763/endpoints/TripPlannerReceiver";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,16 +111,20 @@ public class MainActivity extends AppCompatActivity implements OnResponseListene
         }
         String location = TextUtils.join(",", selectedLocations);
 
+        String body = String.format("{ \"event\": { \"payloadData\": { \"userID\":\"%s\", \"touristPlacesInfo\":\"%s\", \"startTime\":%d, \"endTime\":%d } } }",
+                etUserID.getText().toString(), location, startDate.getTime().getTime(), endDate.getTime().getTime());
+        Log.i("Gobinath", body);
         Request<String> request = new Request<>();
-        //request.setEntity(location);
-        request.setHttpMethod(HttpMethod.GET);
+        request.setEntity(body);
+        request.setHttpMethod(HttpMethod.POST);
         request.setUrl(URL);
+        ServiceConnector<String> connector = new ServiceConnector<>(this);
         connector.execute(request);
     }
 
     @Override
     public void onResponseReceived(String result) {
-        Log.i("Gobinath", result);
+        // Do nothing
     }
 
     public class CustomAdapter extends ArrayAdapter<Location> {
